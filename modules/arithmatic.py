@@ -1,4 +1,5 @@
 #This module will provide one stop solution to and string expression composed of operands and operators between +,-,/,* and curved braces ()
+import evaluate
 
 def earth(s):
 	
@@ -11,13 +12,13 @@ def earth(s):
 			cls=i
 			if op==-1:
 				#Raise Exception
-			simplify=evaluate(s[op+1:cls])
+			simplify=evaluate.solve(s[op+1:cls])
 			if simplify==-1:
 				#Raise Exception
 			s=s[0:op]+simplify+s[cls+1:]
 			i=0,op=-1,cls=-1
 	
-	s=evaluate(s)
+	s=evaluate.solve(s)
 	if s==-1:
 		#Raise Exception
 	return s
