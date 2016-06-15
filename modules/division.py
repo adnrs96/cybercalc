@@ -1,13 +1,7 @@
 # This module provides Division support for two strings and returns a string in suitable format
 def divide(a,b):
-	try:
-		a=int(a)
-	except ValueError:
-		a=float(a)
-	try:
-		b=int(b)
-	except ValueError:
-		b=float(b)
+	a=float(a)
+	b=float(b)
 	ans=a/b
 	ans=repr(ans)
 	try:

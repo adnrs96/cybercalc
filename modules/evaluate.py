@@ -21,14 +21,14 @@ def operation(oper1,oper2,oper):
 def operator_parser(s,op,oper):
 	mid=s.find(op)
 	while mid!=-1:
-		i=mid-1,opn=-1,cls=-1
+		i=mid-1;opn=-1;cls=-1
 		while i>-1 and s[i] not in {'+','-','*','/'}:
 			i=i-1
-		opn=i,i=mid+1
+		opn=i;i=mid+1
 		while i<len(s) and s[i] not in {'+','-','*','/'}:
 			i=i+1
 		cls=i
-		oper1=s[opn+1:mid],oper2=s[mid+1:cls]
+		oper1=s[opn+1:mid];oper2=s[mid+1:cls]
 		s=s[0:opn+1]+operation(oper1,oper2,oper)+s[cls:]
 		mid=s.find(op)
 	return s
