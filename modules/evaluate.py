@@ -25,6 +25,8 @@ def operator_parser(s,op,oper):
 		while i>-1 and s[i] not in {'+','-','*','/'}:
 			i=i-1
 		opn=i;i=mid+1
+		if opn==mid-1:
+			break
 		while i<len(s) and s[i] not in {'+','-','*','/'}:
 			i=i+1
 		cls=i
