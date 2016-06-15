@@ -1,5 +1,7 @@
 # This module provides addition support for two strings and returns a string in suitable format
 def add(a,b):
+	if a=='':
+		a='0'
 	try:
 		a=int(a)
 	except ValueError:
