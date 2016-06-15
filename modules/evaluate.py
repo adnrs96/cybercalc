@@ -1,4 +1,21 @@
 #This module accepts a raw string expression composed of operands and operators between +,-,/,* and returns the mathematical evaluation
+import add
+import subtract
+import multiply
+import division
+
+#Performs specific operations on elementary expression	
+def operation(oper1,oper2,oper):
+	if oper==0:
+		return division.divide(oper1,oper2)
+	if oper==1:
+		return multiply.mul(oper1,oper2)
+	if oper==2:
+		return add.add(oper1,oper2)
+	if oper==3:
+		return subtract.sub(oper1,oper2)
+	return -1
+
 
 #Performs parsing for input operator and resolves expression
 def operator_parser(s,op,oper):
@@ -28,14 +45,3 @@ def solve(s):
 	s=operator_parser(s,'-',3)
 	return s
 
-#Performs specific operations on elementary expression	
-def operation(oper1,oper2,oper):
-	if oper==0:
-		return division(oper1,oper2)
-	if oper==1:
-		return multiplication(oper1,oper2)
-	if oper==2:
-		return Addition(oper1,oper2)
-	if oper==3:
-		return Subtraction(oper1,oper2)
-	return -1
