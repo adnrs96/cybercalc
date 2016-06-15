@@ -4,7 +4,7 @@ import evaluate
 def earth(s):
 	
 	#parsing to simplify the expression by removing brackets
-	op = -1;cls=-1
+	op=-1;cls=-1
 	for i in range(0,len(s)):
 		if s[i] == '(':
 			op=i
