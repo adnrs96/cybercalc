@@ -1,0 +1,80 @@
+from Tkinter import *
+import arithmatic
+def action_append(expr_inp,s):
+	expr_inp.insert(END,s)
+def action_trimLast(expr_inp):
+	expr_inp.delete(len(expr_inp.get())-1)	
+def action_clear(expr_inp):
+	expr_inp.delete(0,END)
+def action_solve(expr_inp):
+	try:
+		s=expr_inp.get()
+		s='('+s+')'
+		s=arithmatic.earth(s)
+	except:
+		s="Invalid Expression"
+	expr_inp.delete(0,END)
+	expr_inp.insert(0,s)
+root = Tk()
+root.wm_title("CyberCalc")
+root.resizable(0,0)
+f1=Frame(root)
+f1.pack(fill=BOTH,expand=1)
+f2=Frame(root,background="#FFFFFF")
+f2.pack(fill=BOTH,expand=1,ipadx=0,ipady=0)
+f3=Frame(root,background="#434343")
+f3.pack(fill=BOTH,expand=1)
+expr_inp = Entry(f2,highlightthickness=0,font=("Helvetica", 12),borderwidth=0,justify=RIGHT,width=34)
+expr_inp.grid(row=1,columnspan=6,padx=(0,0),pady=(0,0),ipadx=10,ipady=5,sticky=E+W)
+b_7 = Button(f3, text="7",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12),command= lambda: action_append(expr_inp,'7'))
+b_7.grid(row=1, column=1,columnspan=1,padx=(10,5),pady=(10,5),sticky=E+W)
+b_8 = Button(f3, text="8",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12),command= lambda: action_append(expr_inp,'8'))
+b_8.grid(row=1, column=2,columnspan=1,padx=(5,5),pady=(10,5),sticky=E+W)
+b_9 = Button(f3, text="9",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12),command= lambda: action_append(expr_inp,'9'))
+b_9.grid(row=1, column=3,columnspan=1,padx=(5,5),pady=(10,5),sticky=E+W)
+b_div = Button(f3, text="/",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12),command= lambda: action_append(expr_inp,'/'))
+b_div.grid(row=1, column=4,columnspan=1,padx=(5,5),pady=(10,5),sticky=E+W)
+b_revert = Button(f3, text="AC",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12),command= lambda: action_clear(expr_inp))
+b_revert.grid(row=1, column=5,columnspan=1,padx=(5,5),pady=(10,5),sticky=E+W)
+b_back = Button(f3, text="C",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12),command= lambda: action_trimLast(expr_inp))
+b_back.grid(row=1, column=6,columnspan=1,padx=(5,10),pady=(10,5),sticky=E+W)
+
+b_4 = Button(f3, text="4",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12),command= lambda: action_append(expr_inp,'4'))
+b_4.grid(row=2, column=1,columnspan=1,padx=(10,5),pady=(5,5),sticky=E+W)
+b_5 = Button(f3, text="5",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12),command= lambda: action_append(expr_inp,'5'))
+b_5.grid(row=2, column=2,columnspan=1,padx=(5,5),pady=(5,5),sticky=E+W)
+b_6 = Button(f3, text="6",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12),command= lambda: action_append(expr_inp,'6'))
+b_6.grid(row=2, column=3,columnspan=1,padx=(5,5),pady=(5,5),sticky=E+W)
+b_mul = Button(f3, text="*",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12),command= lambda: action_append(expr_inp,'*'))
+b_mul.grid(row=2, column=4,columnspan=1,padx=(5,5),pady=(5,5),sticky=E+W)
+b_oc = Button(f3, text="(",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12),command= lambda: action_append(expr_inp,'('))
+b_oc.grid(row=2, column=5,columnspan=1,padx=(5,5),pady=(5,5),sticky=E+W)
+b_cb = Button(f3, text=")",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12),command= lambda: action_append(expr_inp,')'))
+b_cb.grid(row=2, column=6,columnspan=1,padx=(5,10),pady=(5,5),sticky=E+W)
+
+b_1 = Button(f3, text="1",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12),command= lambda: action_append(expr_inp,'1'))
+b_1.grid(row=3, column=1,columnspan=1,padx=(10,5),pady=(5,5),sticky=E+W)
+b_2 = Button(f3, text="2",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12),command= lambda: action_append(expr_inp,'2'))
+b_2.grid(row=3, column=2,columnspan=1,padx=(5,5),pady=(5,5),sticky=E+W)
+b_3 = Button(f3, text="3",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12),command= lambda: action_append(expr_inp,'3'))
+b_3.grid(row=3, column=3,columnspan=1,padx=(5,5),pady=(5,5),sticky=E+W)
+b_sub = Button(f3, text="-",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12),command= lambda: action_append(expr_inp,'-'))
+b_sub.grid(row=3, column=4,columnspan=1,padx=(5,5),pady=(5,5),sticky=E+W)
+b_sq = Button(f3, text="x^2",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12))
+b_sq.grid(row=3, column=5,columnspan=1,padx=(5,5),pady=(5,5),sticky=E+W)
+b_sqrt = Button(f3, text="SQRT",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12))
+b_sqrt.grid(row=3, column=6,columnspan=1,padx=(5,10),pady=(5,5),sticky=E+W)
+
+b_0 = Button(f3, text="0",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12),command= lambda: action_append(expr_inp,'0'))
+b_0.grid(row=4, column=1,columnspan=1,padx=(10,5),pady=(5,10),sticky=E+W)
+b_deci = Button(f3, text=".",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12),command= lambda: action_append(expr_inp,'.'))
+b_deci.grid(row=4, column=2,columnspan=1,padx=(5,5),pady=(5,10),sticky=E+W)
+b_per = Button(f3, text="%",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12),command= lambda: action_append(expr_inp,'%'))
+b_per.grid(row=4, column=3,columnspan=1,padx=(5,5),pady=(5,10),sticky=E+W)
+b_add = Button(f3, text="+",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12),command= lambda: action_append(expr_inp,'+'))
+b_add.grid(row=4, column=4,columnspan=1,padx=(5,5),pady=(5,10),sticky=E+W)
+b_eq = Button(f3, text="=",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica",12),command= lambda: action_solve(expr_inp))
+b_eq.grid(row=4, column=5,columnspan=2,padx=(5,10),pady=(5,10),sticky=E+W)
+
+root.mainloop()
+
