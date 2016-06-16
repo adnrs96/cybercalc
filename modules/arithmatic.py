@@ -4,9 +4,9 @@ import expressionValidation
 def earth(s):
 	
 	#parsing to simplify the expression by removing brackets
-	if expressionValidation.validate(s)==0:
-		s="Invalid Expression"
-		return s
+	#if expressionValidation.validate(s)==0:
+	#	s="Invalid Expression"
+	#	return s
 		
 	op=-1;cls=-1
 	for i in range(0,len(s)):
