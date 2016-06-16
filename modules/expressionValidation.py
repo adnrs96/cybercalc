@@ -4,66 +4,66 @@ import re
 def validate(s):
 	match=re.search(r'[^0-9+-/\*()]',s)
 	if match:
-		return -1
+		return 0
 	match=re.search(r'\)\(',s)
 	if match:
-		return -1
+		return 0
 	match=re.search(r'\(/',s)
 	if match:
-		return -1
+		return 0
 	match=re.search(r'\(*',s)
 	if match:
-		return -1
+		return 0
 	match=re.search(r'\.[0-9]*\.',s)
 	if match:
-		return -1
+		return 0
 	match=re.search(r'\+\)',s)
 	if match:
-		return -1
+		return 0
 	match=re.search(r'\-\)',s)
 	if match:
-		return -1
+		return 0
 	match=re.search(r'/\)',s)
 	if match:
-		return -1
+		return 0
 	match=re.search(r'\*\)',s)
 	if match:
-		return -1
+		return 0
 	match=re.search(r'/\*',s)
 	if match:
-		return -1
+		return 0
 	match=re.search(r'\*/',s)
 	if match:
-		return -1
+		return 0
 	match=re.search(r'\+/',s)
 	if match:
-		return -1
+		return 0
 	match=re.search(r'//',s)
 	if match:
-		return -1
+		return 0
 	match=re.search(r'\*\*',s)
 	if match:
-		return -1
+		return 0
 	match=re.search(r'\+\*',s)
 	if match:
-		return -1
+		return 0
 	match=re.search(r'\-/',s)
 	if match:
-		return -1
+		return 0
 	match=re.search(r'\-\*',s)
 	if match:
-		return -1
+		return 0
 	match=re.search(r'(/\+/)|(/\+\*)|(/\+\+)|(/\+\-)|(/\-/)|(/\-\*)|(/\-\+)|(/\-\-)',s)
 	if match:
-		return -1
+		return 0
 	match=re.search(r'(\*\+/)|(\*\+\*)|(\*\+\+)|(\*\+\-)|(\*\-/)|(\*\-\*)|(\*\-\+)|(\*\-\-)',s)
 	if match:
-		return -1
+		return 0
 	match=re.search(r'(\+\+/)|(\+\+\*)|(\+\+\+)|(\+\+\-)|(\+\-/)|(\+\-\*)|(\+\-\+)|(\+\-\-)',s)
 	if match:
-		return -1
+		return 0
 	match=re.search(r'(\-\+/)|(\-\+\*)|(\-\+\+)|(\-\+\-)|(\-\-/)|(\-\-\*)|(\-\-\+)|(\-\-\-)',s)
 	if match:
-		return -1
+		return 0
 	
 	return 1
