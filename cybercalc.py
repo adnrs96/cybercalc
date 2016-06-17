@@ -1,5 +1,210 @@
 from Tkinter import *
-import arithmatic
+import re
+def add(a,b):
+	if a=='':
+		a='0'
+	try:
+		a=int(a)
+	except ValueError:
+		a=float(a)
+	try:
+		b=int(b)
+	except ValueError:
+		b=float(b)
+	ans=a+b
+	ans=repr(ans)
+	try:
+		ans=int(ans)
+	except ValueError:
+		ans=float(ans)
+	return repr(ans)
+
+def sub(a,b):
+	try:
+		a=int(a)
+	except ValueError:
+		a=float(a)
+	try:
+		b=int(b)
+	except ValueError:
+		b=float(b)
+	ans=a-b
+	ans=repr(ans)
+	try:
+		ans=int(ans)
+	except ValueError:
+		ans=float(ans)
+	return repr(ans)
+
+def mul(a,b):
+	try:
+		a=int(a)
+	except ValueError:
+		a=float(a)
+	try:
+		b=int(b)
+	except ValueError:
+		b=float(b)
+	ans=a*b
+	ans=repr(ans)
+	try:
+		ans=int(ans)
+	except ValueError:
+		ans=float(ans)
+	return repr(ans)
+
+def divide(a,b):
+	a=float(a)
+	b=float(b)
+	ans=a/b
+	ans=repr(ans)
+	try:
+		ans=int(ans)
+	except ValueError:
+		ans=float(ans)
+	return repr(ans)
+
+#Performs specific operations on elementary expression	
+def operation(oper1,oper2,oper):
+	if oper==0:
+		return divide(oper1,oper2)
+	if oper==1:
+		return mul(oper1,oper2)
+	if oper==2:
+		return add(oper1,oper2)
+	if oper==3:
+		return sub(oper1,oper2)
+	return -1
+
+
+#Performs parsing for input operator and resolves expression
+def operator_parser(s,op,oper):
+	mid=s.find(op)
+	while mid!=-1:
+		i=mid-1;opn=-1;cls=-1
+		while i>-1 and s[i] not in {'+','-','*','/'}:
+			i=i-1
+		opn=i;i=mid+1
+		if opn==mid-1 and op=='-':
+			break
+		while i<len(s) and s[i] not in {'+','-','*','/'}:
+			i=i+1
+		if i==mid+1:
+			i=i+1
+			while i<len(s) and s[i] not in {'+','-','*','/'}:
+				i=i+1
+		cls=i
+		oper1=s[opn+1:mid];oper2=s[mid+1:cls]
+		s=s[0:opn+1]+operation(oper1,oper2,oper)+s[cls:]
+		mid=s.find(op)
+	return s
+		
+#Calls for different parsing operations
+def solve(s):
+	#Parse for division operation
+	s=operator_parser(s,'/',0)
+	#Parse for multiplication operation
+	s=operator_parser(s,'*',1)
+	#Parse for Addition operation
+	s=operator_parser(s,'+',2)
+	#Parse for Subtraction operation
+	s=operator_parser(s,'-',3)
+	return s
+
+def validate(s):
+	match=re.search(r'[^0-9+-/\*()]',s)
+	if match:
+		return 0
+	match=re.search(r'\)\(',s)
+	if match:
+		return 0
+	match=re.search(r'\(/',s)
+	if match:
+		return 0
+	match=re.search(r'\(*',s)
+	if match:
+		return 0
+	match=re.search(r'\.[0-9]*\.',s)
+	if match:
+		return 0
+	match=re.search(r'\+\)',s)
+	if match:
+		return 0
+	match=re.search(r'\-\)',s)
+	if match:
+		return 0
+	match=re.search(r'/\)',s)
+	if match:
+		return 0
+	match=re.search(r'\*\)',s)
+	if match:
+		return 0
+	match=re.search(r'/\*',s)
+	if match:
+		return 0
+	match=re.search(r'\*/',s)
+	if match:
+		return 0
+	match=re.search(r'\+/',s)
+	if match:
+		return 0
+	match=re.search(r'//',s)
+	if match:
+		return 0
+	match=re.search(r'\*\*',s)
+	if match:
+		return 0
+	match=re.search(r'\+\*',s)
+	if match:
+		return 0
+	match=re.search(r'\-/',s)
+	if match:
+		return 0
+	match=re.search(r'\-\*',s)
+	if match:
+		return 0
+	match=re.search(r'(/\+/)|(/\+\*)|(/\+\+)|(/\+\-)|(/\-/)|(/\-\*)|(/\-\+)|(/\-\-)',s)
+	if match:
+		return 0
+	match=re.search(r'(\*\+/)|(\*\+\*)|(\*\+\+)|(\*\+\-)|(\*\-/)|(\*\-\*)|(\*\-\+)|(\*\-\-)',s)
+	if match:
+		return 0
+	match=re.search(r'(\+\+/)|(\+\+\*)|(\+\+\+)|(\+\+\-)|(\+\-/)|(\+\-\*)|(\+\-\+)|(\+\-\-)',s)
+	if match:
+		return 0
+	match=re.search(r'(\-\+/)|(\-\+\*)|(\-\+\+)|(\-\+\-)|(\-\-/)|(\-\-\*)|(\-\-\+)|(\-\-\-)',s)
+	if match:
+		return 0
+	
+	return 1
+
+def earth(s):
+	
+	#parsing to simplify the expression by removing brackets
+	#if validate(s)==0:
+	#	s="Invalid Expression"
+	#	return s
+		
+	op=-1;cls=-1
+	for i in range(0,len(s)):
+		if s[i] == '(':
+			op=i
+		if s[i] == ')':
+			cls=i
+			if op==-1:
+				s="Invalid Expression"
+				break
+			simplify=solve(s[op+1:cls])
+			s=s[0:op]+simplify+s[cls+1:]
+			i=0;op=-1;cls=-1
+	if op!=-1 or cls!=-1:
+		s="Invalid Expression"
+		return s
+	if s!="Invalid Expression":
+		s=solve(s)
+	return s
+	
+
 def action_append(expr_inp,s):
 	expr_inp.insert(END,s)
 def action_trimLast(expr_inp):
