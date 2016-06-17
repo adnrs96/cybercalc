@@ -175,7 +175,6 @@ def validate(s):
 	match=re.search(r'(\-\+/)|(\-\+\*)|(\-\+\+)|(\-\+\-)|(\-\-/)|(\-\-\*)|(\-\-\+)|(\-\-\-)',s)
 	if match:
 		return 0
-	
 	return 1
 
 def earth(s):
@@ -215,7 +214,7 @@ def action_solve(expr_inp):
 	try:
 		s=expr_inp.get()
 		s='('+s+')'
-		s=arithmatic.earth(s)
+		s=earth(s)
 	except:
 		s="Invalid Expression"
 	expr_inp.delete(0,END)
