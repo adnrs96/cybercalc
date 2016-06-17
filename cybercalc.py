@@ -203,14 +203,19 @@ def earth(s):
 		s=solve(s)
 	return s
 	
-
+action_text_control=0
 def action_append(expr_inp,s):
+	global action_text_control
+	if action_text_control==1:
+		expr_inp.delete(0,END)
+		action_text_control=0
 	expr_inp.insert(END,s)
 def action_trimLast(expr_inp):
 	expr_inp.delete(len(expr_inp.get())-1)	
 def action_clear(expr_inp):
 	expr_inp.delete(0,END)
 def action_solve(expr_inp):
+	global action_text_control
 	try:
 		s=expr_inp.get()
 		s='('+s+')'
@@ -219,6 +224,7 @@ def action_solve(expr_inp):
 		s="Invalid Expression"
 	expr_inp.delete(0,END)
 	expr_inp.insert(0,s)
+	action_text_control=1
 root = Tk()
 root.wm_title("CyberCalc")
 root.resizable(0,0)
