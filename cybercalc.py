@@ -1,5 +1,6 @@
 from Tkinter import *
 import re	
+import math
 def add(a,b):
 	if a=='':
 		a='0'
@@ -266,6 +267,132 @@ def switch_persqrt():
 	f2.pack_forget()
 	f3.pack_forget()
 	persqrt.pack(fill=BOTH,expand=1)
+def find_perimeter(n,s):
+	return n*s
+def find_semiperimeter(n,s):
+	return find_perimeter(n,s)/2
+def find_peri(pre1,pre2,pre3):
+	n=pre1.get()
+	s=pre2.get()
+	try:
+		n=int(n)
+	except:
+		s='Invalid No. of Sides'
+		pre3.delete(0,END)
+		pre3.insert(0,s)
+		return
+	try:
+		s=float(s)
+	except:
+		s="Invalid Length"
+		pre3.delete(0,END)
+		pre3.insert(0,s)
+		return
+	s=str(find_perimeter(n,s))
+	pre3.delete(0,END)
+	pre3.insert(0,s)
+def find_semi(pre1,pre2,pre3):
+	n=pre1.get()
+	s=pre2.get()
+	try:
+		n=int(n)
+	except:
+		s='Invalid No. of Sides'
+		pre3.delete(0,END)
+		pre3.insert(0,s)
+		return
+	try:
+		s=float(s)
+	except:
+		s="Invalid Length"
+		pre3.delete(0,END)
+		pre3.insert(0,s)
+		return
+	s=str(find_semiperimeter(n,s))
+	pre3.delete(0,END)
+	pre3.insert(0,s)		
+def find_area_triangle(a,b,c):
+	a=float(a)
+	b=float(b)
+	c=float(c)
+	s=(a+b+c)/2
+	sa=s-a
+	sb=s-b
+	sc=s-c
+	return math.sqrt(s*sa*sb*sc)
+    
+def find_triarea(pre1,pre2,pre3,pre4):
+	a=pre1.get()
+	b=pre2.get()
+	c=pre3.get()
+	try:
+		a=int(a)
+	except:
+		s='Invalid Side A'
+		pre4.delete(0,END)
+		pre4.insert(0,s)
+		return
+	try:
+		b=int(b)
+	except:
+		s='Invalid Side B'
+		pre4.delete(0,END)
+		pre4.insert(0,s)
+		return
+	try:
+		c=int(c)
+	except:
+		s='Invalid Side C'
+		pre4.delete(0,END)
+		pre4.insert(0,s)
+		return
+	s=str(find_area_triangle(a,b,c))
+	pre4.delete(0,END)
+	pre4.insert(0,s)
+def find_sqarea(pre1,pre2):
+	n=pre1.get()
+	try:
+		n=int(n)
+	except:
+		s='Invalid Side'
+		pre2.delete(0,END)
+		pre2.insert(0,s)
+		return
+	s=str(n*n)
+	pre2.delete(0,END)
+	pre2.insert(0,s)
+def find_recarea(pre1,pre2,pre3):
+	n=pre1.get()
+	s=pre2.get()
+	try:
+		n=int(n)
+	except:
+		s='Invalid Length'
+		pre3.delete(0,END)
+		pre3.insert(0,s)
+		return
+	try:
+		s=int(s)
+	except:
+		s="Invalid Breadth"
+		pre3.delete(0,END)
+		pre3.insert(0,s)
+		return
+	s=str(n*s)
+	pre3.delete(0,END)
+	pre3.insert(0,s)
+def find_persqrt(pre1,pre2):
+	n=pre1.get()
+	try:
+		n=float(n)
+	except:
+		s='Invalid Percentage'
+		pre2.delete(0,END)
+		pre2.insert(0,s)
+		return
+	s=str(math.sqrt(n/100))
+	pre2.delete(0,END)
+	pre2.insert(0,s)
 root = Tk()
 root.wm_title("CyberCalc")
 root.resizable(0,0)
@@ -369,7 +496,7 @@ rarec.grid(row=2,column=7,columnspan=3,padx=(10,5),pady=(5,5),ipadx=10,ipady=5,s
 atl1 = Label(area_tri, text="Side A")
 atl2 = Label(area_tri, text="Side B")
 atl3 = Label(area_tri, text="Side C")
-atl4 = Button(area_tri, text="Area of Triangle",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12))
+atl4 = Button(area_tri, text="Area of Triangle",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12),command=lambda:find_triarea(ate1,ate2,ate3,ate4))
 ate1 = Entry(area_tri,highlightthickness=0,font=("Helvetica", 12),borderwidth=0,justify=RIGHT,width=10)
 ate2 = Entry(area_tri,highlightthickness=0,font=("Helvetica", 12),borderwidth=0,justify=RIGHT,width=10)
 ate3 = Entry(area_tri,highlightthickness=0,font=("Helvetica", 12),borderwidth=0,justify=RIGHT,width=10)
@@ -385,7 +512,7 @@ ate4.grid(row=3,column=4,columnspan=3,padx=(10,5),pady=(5,5),ipadx=10,ipady=5,st
 
 
 aql1 = Label(area_sq, text="Side")
-aql2 = Button(area_sq, text="Area of Square",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12))
+aql2 = Button(area_sq, text="Area of Square",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12),command=lambda:find_sqarea(aqe1,aqe2))
 aqe1 = Entry(area_sq,highlightthickness=0,font=("Helvetica", 12),borderwidth=0,justify=RIGHT,width=10)
 aqe2 = Entry(area_sq,highlightthickness=0,font=("Helvetica", 12),borderwidth=0,justify=RIGHT,width=10)
 aql1.grid(row=1,column=1,columnspan=3,padx=(10,5),pady=(5,5),ipadx=10,ipady=5,sticky=E+W)
@@ -397,7 +524,7 @@ aqe2.grid(row=2,column=4,columnspan=3,padx=(10,5),pady=(5,5),ipadx=10,ipady=5,st
 
 arl1 = Label(area_rec, text="Length")
 arl2 = Label(area_rec, text="Breadth")
-arl3 = Button(area_rec, text="Area of Rectangle",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12))
+arl3 = Button(area_rec, text="Area of Rectangle",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12),command=lambda:find_recarea(are1,are2,are3))
 are1 = Entry(area_rec,highlightthickness=0,font=("Helvetica", 12),borderwidth=0,justify=RIGHT,width=10)
 are2 = Entry(area_rec,highlightthickness=0,font=("Helvetica", 12),borderwidth=0,justify=RIGHT,width=10)
 are3 = Entry(area_rec,highlightthickness=0,font=("Helvetica", 12),borderwidth=0,justify=RIGHT,width=10)
@@ -418,7 +545,7 @@ petri.grid(row=2,column=4,columnspan=3,padx=(10,5),pady=(5,5),ipadx=10,ipady=5,s
 
 prl1 = Label(peri_peri, text="No. of sides")
 prl2 = Label(peri_peri, text="Length of side")
-prl3 = Button(peri_peri, text="Perimeter",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12))
+prl3 = Button(peri_peri, text="Perimeter",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12),command=lambda:find_peri(pre1,pre2,pre3))
 pre1 = Entry(peri_peri,highlightthickness=0,font=("Helvetica", 12),borderwidth=0,justify=RIGHT,width=10)
 pre2 = Entry(peri_peri,highlightthickness=0,font=("Helvetica", 12),borderwidth=0,justify=RIGHT,width=10)
 pre3 = Entry(peri_peri,highlightthickness=0,font=("Helvetica", 12),borderwidth=0,justify=RIGHT,width=10)
@@ -431,7 +558,7 @@ pre3.grid(row=3,column=4,columnspan=3,padx=(10,5),pady=(5,5),ipadx=10,ipady=5,st
 
 spl1 = Label(peri_semi, text="No. of sides")
 spl2 = Label(peri_semi, text="Length of side")
-spl3 = Button(peri_semi, text="Semi-Perimeter",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12))
+spl3 = Button(peri_semi, text="Semi-Perimeter",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12),command=lambda:find_semi(spe1,spe2,spe3))
 spe1 = Entry(peri_semi,highlightthickness=0,font=("Helvetica", 12),borderwidth=0,justify=RIGHT,width=10)
 spe2 = Entry(peri_semi,highlightthickness=0,font=("Helvetica", 12),borderwidth=0,justify=RIGHT,width=10)
 spe3 = Entry(peri_semi,highlightthickness=0,font=("Helvetica", 12),borderwidth=0,justify=RIGHT,width=10)
@@ -445,7 +572,7 @@ spe3.grid(row=3,column=4,columnspan=3,padx=(10,5),pady=(5,5),ipadx=10,ipady=5,st
 
 pqbk = Button(persqrt, text="Back",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12),command=lambda:construct_main_calc())
 pql1 = Label(persqrt, text="Percentage")
-pql2 = Button(persqrt, text="Percentage Sqrt",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12))
+pql2 = Button(persqrt, text="Percentage Sqrt",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12),command=lambda:find_persqrt(pqe1,pqe2))
 pqe1 = Entry(persqrt,highlightthickness=0,font=("Helvetica", 12),borderwidth=0,justify=RIGHT,width=10)
 pqe2 = Entry(persqrt,highlightthickness=0,font=("Helvetica", 12),borderwidth=0,justify=RIGHT,width=10)
 pqbk.grid(row=1,column=5,columnspan=2,padx=(10,5),pady=(5,5),ipadx=10,ipady=5,sticky=E+W)
