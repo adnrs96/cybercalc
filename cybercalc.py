@@ -1,5 +1,5 @@
 from Tkinter import *
-import re
+import re	
 def add(a,b):
 	if a=='':
 		a='0'
@@ -225,6 +225,47 @@ def action_solve(expr_inp):
 	expr_inp.delete(0,END)
 	expr_inp.insert(0,s)
 	action_text_control=1
+def switch_areas():
+	f1.pack_forget()
+	f2.pack_forget()
+	f3.pack_forget()
+	areas.pack(fill=BOTH,expand=1)
+	rasq.select()
+	#area_tri.pack(fill=BOTH,expand=1)
+	area_sq.pack(fill=BOTH,expand=1)
+	#area_rec.pack(fill=BOTH,expand=1)
+def switch_areas_tri():
+	area_sq.pack_forget()
+	area_rec.pack_forget()
+	area_tri.pack(fill=BOTH,expand=1)
+def switch_areas_sq():
+	area_tri.pack_forget()
+	area_rec.pack_forget()
+	area_sq.pack(fill=BOTH,expand=1)
+def switch_areas_rec():
+	area_tri.pack_forget()
+	area_sq.pack_forget()
+	area_rec.pack(fill=BOTH,expand=1)
+def switch_peri_peri():
+	peri_semi.pack_forget()
+	peri_peri.pack(fill=BOTH,expand=1)
+def switch_peri_semi():
+	peri_peri.pack_forget()
+	peri_semi.pack(fill=BOTH,expand=1)
+def switch_peris():
+	f1.pack_forget()
+	f2.pack_forget()
+	f3.pack_forget()
+	peris.pack(fill=BOTH,expand=1)
+	pesq.select()
+	#area_tri.pack(fill=BOTH,expand=1)
+	peri_peri.pack(fill=BOTH,expand=1)
+	#area_rec.pack(fill=BOTH,expand=1)
+def switch_persqrt():
+	f1.pack_forget()
+	f2.pack_forget()
+	f3.pack_forget()
+	persqrt.pack(fill=BOTH,expand=1)
 root = Tk()
 root.wm_title("CyberCalc")
 root.resizable(0,0)
@@ -234,6 +275,14 @@ f2=Frame(root,background="#FFFFFF")
 f2.pack(fill=BOTH,expand=1,ipadx=0,ipady=0)
 f3=Frame(root,background="#434343")
 f3.pack(fill=BOTH,expand=1)
+areas=Frame(root,background="#000000")
+area_tri=Frame(root,background="#000000")
+area_sq=Frame(root,background="#000000")
+area_rec=Frame(root,background="#000000")
+peris=Frame(root,background="#000000")
+peri_peri=Frame(root,background="#000000")
+peri_semi=Frame(root,background="#000000")
+persqrt=Frame(root,background="#000000")
 expr_inp = Entry(f2,highlightthickness=0,font=("Helvetica", 12),borderwidth=0,justify=RIGHT,width=34)
 expr_inp.grid(row=1,columnspan=6,padx=(0,0),pady=(0,0),ipadx=10,ipady=5,sticky=E+W)
 b_7 = Button(f3, text="7",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12),command= lambda: action_append(expr_inp,'7'))
@@ -244,7 +293,7 @@ b_9 = Button(f3, text="9",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("
 b_9.grid(row=1, column=3,columnspan=1,padx=(5,5),pady=(10,5),sticky=E+W)
 b_div = Button(f3, text="/",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12),command= lambda: action_append(expr_inp,'/'))
 b_div.grid(row=1, column=4,columnspan=1,padx=(5,5),pady=(10,5),sticky=E+W)
-b_revert = Button(f3, text="area's",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12),command= lambda: action_clear(expr_inp))
+b_revert = Button(f3, text="area's",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12),command= lambda: switch_areas())
 b_revert.grid(row=1, column=5,columnspan=1,padx=(5,5),pady=(10,5),sticky=E+W)
 b_back = Button(f3, text="C",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12),command= lambda: action_trimLast(expr_inp))
 b_back.grid(row=1, column=6,columnspan=1,padx=(5,10),pady=(10,5),sticky=E+W)
@@ -270,9 +319,9 @@ b_3 = Button(f3, text="3",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("
 b_3.grid(row=3, column=3,columnspan=1,padx=(5,5),pady=(5,5),sticky=E+W)
 b_sub = Button(f3, text="-",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12),command= lambda: action_append(expr_inp,'-'))
 b_sub.grid(row=3, column=4,columnspan=1,padx=(5,5),pady=(5,5),sticky=E+W)
-b_sq = Button(f3, text="P&SP",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12))
+b_sq = Button(f3, text="P&SP",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12),command=lambda: switch_peris())
 b_sq.grid(row=3, column=5,columnspan=1,padx=(5,5),pady=(5,5),sticky=E+W)
-b_sqrt = Button(f3, text="%sqrt",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12))
+b_sqrt = Button(f3, text="%sqrt",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12),command=lambda:switch_persqrt())
 b_sqrt.grid(row=3, column=6,columnspan=1,padx=(5,10),pady=(5,5),sticky=E+W)
 
 b_0 = Button(f3, text="0",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12),command= lambda: action_append(expr_inp,'0'))
@@ -285,6 +334,127 @@ b_add = Button(f3, text="+",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=
 b_add.grid(row=4, column=4,columnspan=1,padx=(5,5),pady=(5,10),sticky=E+W)
 b_eq = Button(f3, text="=",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica",12),command= lambda: action_solve(expr_inp))
 b_eq.grid(row=4, column=5,columnspan=2,padx=(5,10),pady=(5,10),sticky=E+W)
+
+
+def construct_main_calc():
+		areas.pack_forget()
+		area_tri.pack_forget()
+		area_sq.pack_forget()
+		area_rec.pack_forget()
+		peris.pack_forget()
+		peri_peri.pack_forget()
+		peri_semi.pack_forget()
+		persqrt.pack_forget()
+		f1.pack(fill=BOTH,expand=1)
+		f2.pack(fill=BOTH,expand=1,ipadx=0,ipady=0)
+		f3.pack(fill=BOTH,expand=1)
+
+#areas.pack(fill=BOTH,expand=1)
+#area_tri.pack(fill=BOTH,expand=1)
+#area_sq.pack(fill=BOTH,expand=1)
+#area_rec.pack(fill=BOTH,expand=1)
+
+arbk = Button(areas, text="Back",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12),command=lambda:construct_main_calc())
+area_radio_control=IntVar()
+rasq = Radiobutton(areas, text="Square's Area", variable=area_radio_control, value=1,command=lambda: switch_areas_sq())
+ratri = Radiobutton(areas, text="Triangle's Area", variable=area_radio_control, value=2,command=lambda: switch_areas_tri())
+rarec = Radiobutton(areas, text="Rectangle's Area", variable=area_radio_control, value=3,command=lambda: switch_areas_rec())
+
+arbk.grid(row=1,column=8,columnspan=2,padx=(10,5),pady=(5,5),ipadx=10,ipady=5,sticky=E+W)
+rasq.grid(row=2,column=1,columnspan=3,padx=(10,5),pady=(5,5),ipadx=10,ipady=5,sticky=E+W)
+ratri.grid(row=2,column=4,columnspan=3,padx=(10,5),pady=(5,5),ipadx=10,ipady=5,sticky=E+W)
+rarec.grid(row=2,column=7,columnspan=3,padx=(10,5),pady=(5,5),ipadx=10,ipady=5,sticky=E+W)
+
+
+atl1 = Label(area_tri, text="Side A")
+atl2 = Label(area_tri, text="Side B")
+atl3 = Label(area_tri, text="Side C")
+atl4 = Button(area_tri, text="Area of Triangle",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12))
+ate1 = Entry(area_tri,highlightthickness=0,font=("Helvetica", 12),borderwidth=0,justify=RIGHT,width=10)
+ate2 = Entry(area_tri,highlightthickness=0,font=("Helvetica", 12),borderwidth=0,justify=RIGHT,width=10)
+ate3 = Entry(area_tri,highlightthickness=0,font=("Helvetica", 12),borderwidth=0,justify=RIGHT,width=10)
+ate4 = Entry(area_tri,highlightthickness=0,font=("Helvetica", 12),borderwidth=0,justify=RIGHT,width=10)
+atl1.grid(row=1,column=1,columnspan=3,padx=(10,5),pady=(5,5),ipadx=10,ipady=5,sticky=E+W)
+atl2.grid(row=1,column=4,columnspan=3,padx=(10,5),pady=(5,5),ipadx=10,ipady=5,sticky=E+W)
+atl3.grid(row=1,column=7,columnspan=3,padx=(10,5),pady=(5,5),ipadx=10,ipady=5,sticky=E+W)
+ate1.grid(row=2,column=1,columnspan=3,padx=(10,5),pady=(5,5),ipadx=10,ipady=5,sticky=E+W)
+ate2.grid(row=2,column=4,columnspan=3,padx=(10,5),pady=(5,5),ipadx=10,ipady=5,sticky=E+W)
+ate3.grid(row=2,column=7,columnspan=3,padx=(10,5),pady=(5,5),ipadx=10,ipady=5,sticky=E+W)
+atl4.grid(row=3,column=1,columnspan=3,padx=(10,5),pady=(5,5),ipadx=10,ipady=5,sticky=E+W)
+ate4.grid(row=3,column=4,columnspan=3,padx=(10,5),pady=(5,5),ipadx=10,ipady=5,sticky=E+W)
+
+
+aql1 = Label(area_sq, text="Side")
+aql2 = Button(area_sq, text="Area of Square",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12))
+aqe1 = Entry(area_sq,highlightthickness=0,font=("Helvetica", 12),borderwidth=0,justify=RIGHT,width=10)
+aqe2 = Entry(area_sq,highlightthickness=0,font=("Helvetica", 12),borderwidth=0,justify=RIGHT,width=10)
+aql1.grid(row=1,column=1,columnspan=3,padx=(10,5),pady=(5,5),ipadx=10,ipady=5,sticky=E+W)
+aqe1.grid(row=1,column=4,columnspan=3,padx=(10,5),pady=(5,5),ipadx=10,ipady=5,sticky=E+W)
+aql2.grid(row=2,column=1,columnspan=3,padx=(10,5),pady=(5,5),ipadx=10,ipady=5,sticky=E+W)
+aqe2.grid(row=2,column=4,columnspan=3,padx=(10,5),pady=(5,5),ipadx=10,ipady=5,sticky=E+W)
+
+
+
+arl1 = Label(area_rec, text="Length")
+arl2 = Label(area_rec, text="Breadth")
+arl3 = Button(area_rec, text="Area of Rectangle",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12))
+are1 = Entry(area_rec,highlightthickness=0,font=("Helvetica", 12),borderwidth=0,justify=RIGHT,width=10)
+are2 = Entry(area_rec,highlightthickness=0,font=("Helvetica", 12),borderwidth=0,justify=RIGHT,width=10)
+are3 = Entry(area_rec,highlightthickness=0,font=("Helvetica", 12),borderwidth=0,justify=RIGHT,width=10)
+arl1.grid(row=1,column=1,columnspan=3,padx=(10,5),pady=(5,5),ipadx=10,ipady=5,sticky=E+W)
+are1.grid(row=1,column=4,columnspan=3,padx=(10,5),pady=(5,5),ipadx=10,ipady=5,sticky=E+W)
+arl2.grid(row=2,column=1,columnspan=3,padx=(10,5),pady=(5,5),ipadx=10,ipady=5,sticky=E+W)
+are2.grid(row=2,column=4,columnspan=3,padx=(10,5),pady=(5,5),ipadx=10,ipady=5,sticky=E+W)
+arl3.grid(row=3,column=1,columnspan=3,padx=(10,5),pady=(5,5),ipadx=10,ipady=5,sticky=E+W)
+are3.grid(row=3,column=4,columnspan=3,padx=(10,5),pady=(5,5),ipadx=10,ipady=5,sticky=E+W)
+
+pebk = Button(peris, text="Back",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12),command=lambda:construct_main_calc())
+peea_radio_control=IntVar()
+pesq = Radiobutton(peris, text="Perimeter", variable=peea_radio_control, value=1,command=lambda: switch_peri_peri())
+petri = Radiobutton(peris, text="SemiPerimter", variable=peea_radio_control, value=2,command=lambda: switch_peri_semi())
+pebk.grid(row=1,column=5,columnspan=2,padx=(10,5),pady=(5,5),ipadx=10,ipady=5,sticky=E+W)
+pesq.grid(row=2,column=1,columnspan=3,padx=(10,5),pady=(5,5),ipadx=10,ipady=5,sticky=E+W)
+petri.grid(row=2,column=4,columnspan=3,padx=(10,5),pady=(5,5),ipadx=10,ipady=5,sticky=E+W)
+
+prl1 = Label(peri_peri, text="No. of sides")
+prl2 = Label(peri_peri, text="Length of side")
+prl3 = Button(peri_peri, text="Perimeter",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12))
+pre1 = Entry(peri_peri,highlightthickness=0,font=("Helvetica", 12),borderwidth=0,justify=RIGHT,width=10)
+pre2 = Entry(peri_peri,highlightthickness=0,font=("Helvetica", 12),borderwidth=0,justify=RIGHT,width=10)
+pre3 = Entry(peri_peri,highlightthickness=0,font=("Helvetica", 12),borderwidth=0,justify=RIGHT,width=10)
+prl1.grid(row=1,column=1,columnspan=3,padx=(10,5),pady=(5,5),ipadx=10,ipady=5,sticky=E+W)
+pre1.grid(row=1,column=4,columnspan=3,padx=(10,5),pady=(5,5),ipadx=10,ipady=5,sticky=E+W)
+prl2.grid(row=2,column=1,columnspan=3,padx=(10,5),pady=(5,5),ipadx=10,ipady=5,sticky=E+W)
+pre2.grid(row=2,column=4,columnspan=3,padx=(10,5),pady=(5,5),ipadx=10,ipady=5,sticky=E+W)
+prl3.grid(row=3,column=1,columnspan=3,padx=(10,5),pady=(5,5),ipadx=10,ipady=5,sticky=E+W)
+pre3.grid(row=3,column=4,columnspan=3,padx=(10,5),pady=(5,5),ipadx=10,ipady=5,sticky=E+W)
+
+spl1 = Label(peri_semi, text="No. of sides")
+spl2 = Label(peri_semi, text="Length of side")
+spl3 = Button(peri_semi, text="Semi-Perimeter",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12))
+spe1 = Entry(peri_semi,highlightthickness=0,font=("Helvetica", 12),borderwidth=0,justify=RIGHT,width=10)
+spe2 = Entry(peri_semi,highlightthickness=0,font=("Helvetica", 12),borderwidth=0,justify=RIGHT,width=10)
+spe3 = Entry(peri_semi,highlightthickness=0,font=("Helvetica", 12),borderwidth=0,justify=RIGHT,width=10)
+spl1.grid(row=1,column=1,columnspan=3,padx=(10,5),pady=(5,5),ipadx=10,ipady=5,sticky=E+W)
+spe1.grid(row=1,column=4,columnspan=3,padx=(10,5),pady=(5,5),ipadx=10,ipady=5,sticky=E+W)
+spl2.grid(row=2,column=1,columnspan=3,padx=(10,5),pady=(5,5),ipadx=10,ipady=5,sticky=E+W)
+spe2.grid(row=2,column=4,columnspan=3,padx=(10,5),pady=(5,5),ipadx=10,ipady=5,sticky=E+W)
+spl3.grid(row=3,column=1,columnspan=3,padx=(10,5),pady=(5,5),ipadx=10,ipady=5,sticky=E+W)
+spe3.grid(row=3,column=4,columnspan=3,padx=(10,5),pady=(5,5),ipadx=10,ipady=5,sticky=E+W)
+
+
+pqbk = Button(persqrt, text="Back",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12),command=lambda:construct_main_calc())
+pql1 = Label(persqrt, text="Percentage")
+pql2 = Button(persqrt, text="Percentage Sqrt",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 12))
+pqe1 = Entry(persqrt,highlightthickness=0,font=("Helvetica", 12),borderwidth=0,justify=RIGHT,width=10)
+pqe2 = Entry(persqrt,highlightthickness=0,font=("Helvetica", 12),borderwidth=0,justify=RIGHT,width=10)
+pqbk.grid(row=1,column=5,columnspan=2,padx=(10,5),pady=(5,5),ipadx=10,ipady=5,sticky=E+W)
+pql1.grid(row=2,column=1,columnspan=3,padx=(10,5),pady=(5,5),ipadx=10,ipady=5,sticky=E+W)
+pqe1.grid(row=2,column=4,columnspan=3,padx=(10,5),pady=(5,5),ipadx=10,ipady=5,sticky=E+W)
+pql2.grid(row=3,column=1,columnspan=3,padx=(10,5),pady=(5,5),ipadx=10,ipady=5,sticky=E+W)
+pqe2.grid(row=3,column=4,columnspan=3,padx=(10,5),pady=(5,5),ipadx=10,ipady=5,sticky=E+W)
+
+
 
 root.mainloop()
 
