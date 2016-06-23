@@ -82,4 +82,16 @@ The front end GUI consists of
 pack manager for main root container
 Grid manager for within frames 
 
-* A menu bar has been used for 
+* A menu bar has been used for providing switching facility between different screens available
+
+Screens available namely are :-
+1.) Basic
+2.) Area
+3.) Perimeter and semiperimeter
+4.) Percentage Sqrt
+
+Labels, Buttons, Entry fields have been used to provide an interative GUI enviroment for the user.
+
+User has the liberty to provide data input both from keyboard or and onscreen numpad displayed along with the
+basic screen.
+
