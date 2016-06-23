@@ -1,10 +1,9 @@
-*************************CyberCalc************************************************************************************
+﻿*************************CyberCalc**********************************************************************************************
 
-************Notes*****************************************************************************************************
+*********Notes********************************************************************************************************************
 
-*Just as any other Calculator out there this one also performs the same,
-The Addition, Subtraction, Multiplication, Divsion and some other operations as area calculation, perimeter calculation
-and percentage square root. 
+
+*Just as any other Calculator out there this one also performs the same Addition, Subtraction, Multiplication, Divsion and some other operations as area calculation, perimeter calculation and percentage square root. 
 
 *The code involves a macro view which is a calculator broken down to smaller view as a backend part which deals with 
 problem solving and a front part which deals with the GUI and how things look.
@@ -76,6 +75,8 @@ The front end GUI consists of
 1.) A main Root element which holds the main container window.
 
 2.) Different frames required for different tasks.
+
+
 
 *Package manager used for placing widgets in tkinter
 
