@@ -448,6 +448,7 @@ root.config(menu=menu)
 submenu=Menu(menu,tearoff=0)
 submenu1=Menu(menu,tearoff=0)
 menu.add_cascade(label="Operations",menu=submenu)
+submenu.add_command(label="Basic",command=lambda:construct_main_calc())
 submenu.add_command(label="Area",command=lambda: switch_areas())
 submenu.add_command(label="Peri & Semi-peri",command=lambda: switch_peris())
 submenu.add_command(label="Percent sqrt",command=lambda:switch_persqrt())
@@ -544,7 +545,8 @@ def construct_main_calc():
 #Widgets for other screens Created and gridded
 
 #Area screen Widgets
-arbk = Button(areas, text="Back",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 10),command=lambda:construct_main_calc())
+#arbk = Button(areas, text="Back",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 10),command=lambda:construct_main_calc())
+arbk = Label(areas, text="",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 10))
 area_radio_control=IntVar()
 rasq = Radiobutton(areas, text="Square's Area", variable=area_radio_control,highlightthickness=0,value=1,bg="#434343",fg="#FFFFFF",selectcolor="#434343",command=lambda: switch_areas_sq(),font=("Helvetica", 12))
 ratri = Radiobutton(areas, text="Triangle's Area", variable=area_radio_control,highlightthickness=0, value=2,bg="#434343",fg="#FFFFFF",selectcolor="#434343",command=lambda: switch_areas_tri(),font=("Helvetica", 12))
@@ -615,7 +617,8 @@ arl3.grid(row=3,column=3,columnspan=3,padx=(10,5),pady=(5,5),ipadx=0,ipady=0,sti
 are3.grid(row=3,column=6,columnspan=3,padx=(10,5),pady=(5,5),ipadx=10,ipady=5,sticky=E+W)
 
 #Perimeter Widgets
-pebk = Button(peris, text="Back",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 10),command=lambda:construct_main_calc())
+#pebk = Button(peris, text="Back",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 10),command=lambda:construct_main_calc())
+pebk = Label(peris, text="",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 10))
 peea_radio_control=IntVar()
 pesq = Radiobutton(peris, text="Perimeter", variable=peea_radio_control, value=1,highlightthickness=0,bg="#434343",fg="#FFFFFF",selectcolor="#434343",command=lambda: switch_peri_peri(),font=("Helvetica", 12))
 petri = Radiobutton(peris, text="SemiPerimter", variable=peea_radio_control, value=2,highlightthickness=0,bg="#434343",fg="#FFFFFF",selectcolor="#434343",command=lambda: switch_peri_semi(),font=("Helvetica", 12))
@@ -652,7 +655,8 @@ spl3.grid(row=3,column=1,columnspan=3,padx=(10,5),pady=(5,5),ipadx=0,ipady=0,sti
 spe3.grid(row=3,column=4,columnspan=3,padx=(10,5),pady=(5,5),ipadx=10,ipady=5,sticky=E+W)
 
 #Percentage Sqrt Widgets
-pqbk = Button(persqrt, text="Back",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 10),command=lambda:construct_main_calc())
+#pqbk = Button(persqrt, text="Back",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 10),command=lambda:construct_main_calc())
+pqbk = Label(persqrt, text="",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 10))
 pql1 = Label(persqrt, text="Percentage",highlightthickness=0,bg="#434343",fg="#FFFFFF",font=("Helvetica", 12))
 pql2 = Button(persqrt, text="Percentage Sqrt",bg="#434343",fg="#FFFFFF",highlightthickness=0,font=("Helvetica", 11),command=lambda:find_persqrt(pqe1,pqe2))
 pqe1 = Entry(persqrt,highlightthickness=0,font=("Helvetica", 12),borderwidth=0,justify=RIGHT,width=10)
