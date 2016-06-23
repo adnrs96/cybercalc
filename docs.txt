@@ -1,0 +1,85 @@
+*************************CyberCalc************************************************************************************
+
+************Notes*****************************************************************************************************
+
+*Just as any other Calculator out there this one also performs the same,
+The Addition, Subtraction, Multiplication, Divsion and some other operations as area calculation, perimeter calculation
+and percentage square root. 
+
+*The code involves a macro view which is a calculator broken down to smaller view as a backend part which deals with 
+problem solving and a front part which deals with the GUI and how things look.
+
+*The backend part*
+
+Involves basically excepting an expression and ripping off things according to BODMAS rule to break expression down 
+into elementary solvable expression. The results of these are later combined to form the overall answer to expression
+
+Functions are defined for separete parts to be solved of an possible expression namly working in order of
+earth(),validate(),solve(),operator_parser(),and rest elementarty functions for simple addition,subtraction,division 
+and subtraction.
+
+Validate function performs expression validation using RegEx and definning rules which must be followed for and 
+expression to be atleast valid for evalution.
+
+#parsing to simplify the expression by ripping off brackets and carving out basic simple expression which 
+doesn't have brackets 
+earth(s)
+
+#This function acts as a validation point using RegEx
+validate(s)
+
+#Calls for different parsing operations
+solve(s)
+
+#Performs parsing for input operator and resolves expression
+operator_parser(s,op,oper)
+
+#Basic function that expects two operands as strings and returns the Addition of them as a string
+add(a,b)
+#Basic function that expects two operands as strings and returns the Subtraction of them as a string
+sub(a,b)
+#Basic function that expects two operands as strings and returns the multiplication of them as a string
+mul(a,b)
+#Basic function that expects two operands as strings and returns the division of them as a string
+divide(a,b)
+
+
+So the problem here for backend part is given a mathematical expression we need to evalute it
+
+Possible solutions:
+
+1.) Create a custom set of functions which rips of operators according to BODMAS
+2.) Use python's inbuilt Eval function 
+
+Solution used:
+
+Here first solution i.e. Create a custom set of functions which rips of operators according to BODMAS has been used.
+
+Why Not 2nd and easier solution:-
+
+1.) Python's eval function executed any string as python code.This is a security loop hole as and expression which 
+might be malicious code may get executed.
+2.) Python's eval function doesn't give always the right answer owning to implicit typecasting nature.
+    For ex.
+	Python's eval function would result in 0 if given an expression 2/3.
+	Expected behaviour is 2/3 = 0.666666667
+	Actual Behavious is 2/3 = 0
+	
+Hence this solution was dropped for the first solution.
+
+* The Front end part *
+
+*The front end part consists of GUI constructed using Tkinter library of python
+
+The front end GUI consists of 
+
+1.) A main Root element which holds the main container window.
+
+2.) Different frames required for different tasks.
+
+*Package manager used for placing widgets in tkinter
+
+pack manager for main root container
+Grid manager for within frames 
+
+* A menu bar has been used for 
