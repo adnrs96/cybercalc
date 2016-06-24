@@ -472,7 +472,7 @@ peri_semi=Frame(root,background="#434343")
 persqrt=Frame(root,background="#434343")
 
 #expr screen defined and gridded
-expr_inp = Entry(f2,highlightthickness=0,font=("Helvetica", 12),borderwidth=0,justify=RIGHT,width=26)
+expr_inp = Entry(f2,highlightthickness=0,font=("Helvetica", 12),borderwidth=0,justify=RIGHT,width=31)
 expr_inp.grid(row=1,columnspan=6,padx=(0,0),pady=(0,0),ipadx=10,ipady=5,sticky=E+W)
 
 #Added key bindings for enter event
