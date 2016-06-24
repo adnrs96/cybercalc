@@ -186,10 +186,11 @@ def validate(s):
 
 #parsing to simplify the expression by ripping off brackets and carving out basic simple expression which doesn't have brackets 
 def earth(s):
-	
+	global action_text_control
 	#Regex Validation call 
 	if validate(s)==0:
 		s="Invalid Expression"
+		action_text_control=1
 		return s
 		
 	op=-1;cls=-1;i=0
@@ -200,6 +201,7 @@ def earth(s):
 			cls=i
 			if op==-1:
 				s="Invalid Expression"
+				action_text_control=1
 				break
 			simplify=solve(s[op+1:cls])
 			s=s[0:op]+simplify+s[cls+1:]
@@ -207,6 +209,7 @@ def earth(s):
 		i=i+1
 	if op!=-1 or cls!=-1:
 		s="Invalid Expression"
+		action_text_control=1
 		return s
 	if s!="Invalid Expression":
 		s=solve(s)
@@ -237,9 +240,10 @@ def action_solve(expr_inp):
 		s=earth(s)
 	except:
 		s="Invalid Expression"
+		action_text_control=1
 	expr_inp.delete(0,END)
 	expr_inp.insert(0,s)
-	action_text_control=0
+	#action_text_control=0
 #Renders area screen
 def switch_areas():
 	peris.pack_forget()
